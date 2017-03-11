@@ -13,5 +13,8 @@
             "name": "Jakub Turek",
             "email": "ja@kubaturek.pl"
         }
-    ]
+    ],
+    "config": {
+        "bin-dir": "bin"
+    }
 }
