@@ -1,0 +1,15 @@
+{
+    "name": "jakub.turek/phpuri",
+    "description": "URI parser and validator",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
+    },
+    "authors": [
+        {
+            "name": "Jakub Turek",
+            "email": "ja@kubaturek.pl"
+        }
+    ],
+    "require": {}
+}
