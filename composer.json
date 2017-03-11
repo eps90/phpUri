@@ -16,5 +16,15 @@
     ],
     "config": {
         "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "EPS\\PhpUri\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EPS\\PhpUri\\Tests\\": "tests/"
+        }
     }
 }
