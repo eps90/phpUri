@@ -37,8 +37,13 @@ final class Uri
      * @param string $query
      * @param string $fragment
      */
-    public function __construct(string $scheme, UriAuthority $authority, string $path, string $query, string $fragment)
-    {
+    public function __construct(
+        ?string $scheme,
+        UriAuthority $authority,
+        ?string $path,
+        ?string $query,
+        ?string $fragment
+    ) {
         $this->scheme = $scheme;
         $this->authority = $authority;
         $this->path = $path;

@@ -31,7 +31,7 @@ final class UriAuthority
      * @param string $host
      * @param int $port
      */
-    public function __construct(string $username, string $password, string $host, int $port)
+    public function __construct(?string $username, ?string $password, ?string $host, ?int $port)
     {
         $this->username = $username;
         $this->password = $password;
