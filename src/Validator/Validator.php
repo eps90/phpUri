@@ -11,6 +11,7 @@ interface Validator
      *
      * @param string $uriCandidate
      * @return bool
+     * @throws \EPS\PhpUri\Exception\ValidatorException
      */
     public function validate(string $uriCandidate): bool;
 }
