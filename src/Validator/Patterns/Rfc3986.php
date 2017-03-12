@@ -46,7 +46,7 @@ interface Rfc3986
 
     public const UNRESERVED = self::ALPHA . self::DIGIT . '\-\._~';
     public const DELIMITERS = '!$&\'()*+,;=';
-    public const SCHEME = '[' . self::ALPHA . '][' . self::ALPHA . self::DIGIT . '\+\-\.]';
+    public const SCHEME = '[' . self::ALPHA . '][' . self::ALPHA . self::DIGIT . '\+\-\.]*';
 
     public const GEN_DELIMITERS = ':/?#[]@';
 }
