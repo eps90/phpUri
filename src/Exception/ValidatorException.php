@@ -15,4 +15,12 @@ class ValidatorException extends \LogicException
 
         return new self($message, $code, $previous);
     }
+
+    public static function invalidScheme(string $uri, \Throwable $previous = null): self
+    {
+        $message = "Invalid scheme in $uri";
+        $code = 3;
+
+        return new self($message, $code, $previous);
+    }
 }
