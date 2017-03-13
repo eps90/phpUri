@@ -47,4 +47,12 @@ class ValidatorException extends \LogicException
 
         return new self($message, $code, $previous);
     }
+
+    public static function invalidFragment(string $uri, \Throwable $previous = null): self
+    {
+        $message = "Invalid fragment in $uri";
+        $code = 6;
+
+        return new self($message, $code, $previous);
+    }
 }
