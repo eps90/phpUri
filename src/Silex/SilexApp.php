@@ -71,5 +71,13 @@ final class SilexApp extends Application
 
             return $app->json($responseContent, Response::HTTP_CREATED);
         });
+        $app->error(function (\Throwable $error, Request $request, $code) {
+            if ($code !== 0) {
+                $status = $code;
+            } else {
+                $status = Response::HTTP_INTERNAL_SERVER_ERROR;
+            }
+            return new Response('', $status);
+        });
     }
 }
