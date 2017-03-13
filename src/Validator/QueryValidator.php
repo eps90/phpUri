@@ -17,7 +17,7 @@ final class QueryValidator implements Validator
             ValidatorException::invalidQuery($uriCandidate);
         }
 
-        $query = $matches[7];
+        $query = $matches[7] ?? null;
 
         if (!empty($query)) {
             $queryRegex = '/^(' . Rfc3986::QUERY . ')$/';
