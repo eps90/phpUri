@@ -26,6 +26,11 @@ final class Uri
     private $query;
 
     /**
+     * @var array
+     */
+    private $queryParts;
+
+    /**
      * @var string
      */
     private $fragment;
@@ -38,17 +43,17 @@ final class Uri
      * @param string $fragment
      */
     public function __construct(
-        ?string $scheme,
-        UriAuthority $authority,
-        ?string $path,
-        ?string $query,
-        ?string $fragment
+        string $scheme = null,
+        UriAuthority $authority = null,
+        string $path = null,
+        string $query = null,
+        string $fragment = null
     ) {
-        $this->scheme = $scheme;
+        $this->scheme = $scheme !== null ? rawurlencode($scheme) : null;
         $this->authority = $authority;
-        $this->path = $path;
-        $this->query = $query;
-        $this->fragment = $fragment;
+        $this->path = $this->encodePath($path);
+        $this->query = $this->encodeQuery($query);
+        $this->fragment = $fragment !== null ? rawurlencode($fragment) : null;
     }
 
     /**
@@ -89,5 +94,27 @@ final class Uri
     public function getFragment(): ?string
     {
         return $this->fragment;
+    }
+
+    private function encodePath(string $path = null): ?string
+    {
+        if ($path === null) {
+            return null;
+        }
+
+        return implode('/', array_map('rawurlencode', explode('/', $path)));
+    }
+
+    private function encodeQuery(string $query = null)
+    {
+        if ($query === null) {
+            $this->queryParts = [];
+            return null;
+        }
+
+        parse_str($query, $output);
+        $this->queryParts = $output;
+
+        return http_build_query($output);
     }
 }
