@@ -26,7 +26,7 @@ final class UriFormatter implements Formatter
         $result = $this->formatScheme($uriParts);
         $result .= $this->formatAuthority($uriParts);
         $result .= $this->formatPath($uriParts);
-        $result .= '?' . $uriParts['query'];
+        $result .= $this->formatQuery($uriParts);
         $result .= $this->formatFragment($uriParts);
 
         return $result;
@@ -83,6 +83,15 @@ final class UriFormatter implements Formatter
         }
 
         return $parts['path'];
+    }
+
+    private function formatQuery(array $parts): string
+    {
+        if (!isset($parts['query'])) {
+            return '';
+        }
+
+        return '?' . $parts['query'];
     }
 
     private function formatFragment(array $parts): string

@@ -143,6 +143,21 @@ class UriFormatterTest extends TestCase
                     'fragment'
                 ),
                 'expected' => 'http://%5Bu%5Dser:pa%5Bs%5Dss@exa%5Bm%5Dmple.com:8081/some/path%5B0%5D?some_query_param%5B0%5D=1#fragment'
+            ],
+            'empty_query' => [
+                'uri' => new Uri(
+                    'http',
+                    new UriAuthority(
+                        'user',
+                        'pass',
+                        'example.com',
+                        8081
+                    ),
+                    '/some/path',
+                    null,
+                    'fragment'
+                ),
+                'expected' => 'http://user:pass@example.com:8081/some/path#fragment'
             ]
         ];
     }
