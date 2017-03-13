@@ -90,3 +90,40 @@ which uses the `parse_url` function to fetch uri parts.
 An `UriFormatter` implementing `Formatter` interface will return encoded URI
 from URI object. This process is also [RFC 3986 compatible](https://tools.ietf.org/html/rfc3986#section-5.3).
 
+## REST API
+
+This project contains very simple REST API built on [Silex](http://silex.sensiolabs.org/).
+You can validate and parse your URI via HTTP by sending a json with URI **OR**
+send uri parts to create URI.
+
+Routes implemented so far:
+
+* `GET /uri` - send an URI in json to retrieve URI parts. Response codes:
+  * **200** - successful validation and parsing
+  * **400** - improperly formatted request
+  * **422** - validation failed
+  * **500** - generic error
+* `POST /uri` - send URI parts to retrieve json with formatted URI
+  * **201** - URI created
+  * **400** - improperly formatted request
+  * **500** - generic error
+  
+The response of `GET /uri` and request payload of `POST /uri` is the same - it's serialized URI object.
+  
+### Running on PHP server
+
+You can use PHP built-in HTTP server to run this REST API. Simply run:
+
+```bash
+php -S localhost:8081 -t web/
+```
+
+### Examples
+
+```bash
+# Parse URI
+curl http://localhost:8018/uri -XGET -d '{"uri":"http:\/\/example.com\/some\/path"}' -H 'Content-Type: application/json'
+
+# Create URI
+curl http://localhost:8081/uri -XPOST -d '{"scheme":"http","authority":{"host":"example.com"}}' -H 'Content-Type: application/json' 
+```
