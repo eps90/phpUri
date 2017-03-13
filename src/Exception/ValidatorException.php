@@ -39,4 +39,12 @@ class ValidatorException extends \LogicException
 
         return new self($message, $code, $previous);
     }
+
+    public static function invalidQuery($uri, \Throwable $previous = null): self
+    {
+        $message = "Invalid query in $uri";
+        $code = 5;
+
+        return new self($message, $code, $previous);
+    }
 }
