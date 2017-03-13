@@ -49,8 +49,8 @@ final class AggregatedValidator implements Validator
     {
         try {
             return $validator->validate($uriCandidate);
-        } catch (\Throwable $exception) {
-            throw ValidatorException::validationFailed($uriCandidate, $exception);
+        } catch (\Throwable $previousException) {
+            throw ValidatorException::validationFailed($uriCandidate, $previousException);
         }
     }
 }
