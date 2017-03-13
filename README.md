@@ -127,3 +127,17 @@ curl http://localhost:8018/uri -XGET -d '{"uri":"http:\/\/example.com\/some\/pat
 # Create URI
 curl http://localhost:8081/uri -XPOST -d '{"scheme":"http","authority":{"host":"example.com"}}' -H 'Content-Type: application/json' 
 ```
+
+## Development and testing
+
+To install project, first you need to download of dependencies using Composer:
+
+```bash
+composer install
+```
+
+To run unit test with PHPUnit, use following command:
+
+```bash
+bin/phpunit 
+```
