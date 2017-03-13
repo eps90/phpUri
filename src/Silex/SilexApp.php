@@ -63,9 +63,13 @@ final class SilexApp extends Application
             $uri = $factory->createUri($requestedParts);
 
             $formatter = new UriFormatter();
-            $result = $formatter->format($uri);
+            $uriFormatted = $formatter->format($uri);
 
-            return $app->json($result, Response::HTTP_CREATED);
+            $responseContent = [
+                'uri' => $uriFormatted
+            ];
+
+            return $app->json($responseContent, Response::HTTP_CREATED);
         });
     }
 }

@@ -62,10 +62,12 @@ class CreateUriViaHttpTest extends TestCase
 
         $response = $this->sendJson($payload);
 
-        $expectedUri = json_encode('http://example.com/some/path');
-        $actualStatus = $response->getContent();
+        $expectedResponse = json_encode([
+            'uri' => 'http://example.com/some/path'
+        ]);
+        $actualResponse = $response->getContent();
 
-        static::assertEquals($expectedUri, $actualStatus);
+        static::assertEquals($expectedResponse, $actualResponse);
     }
 
     /**
