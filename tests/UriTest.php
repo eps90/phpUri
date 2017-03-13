@@ -44,4 +44,61 @@ class UriTest extends TestCase
         static::assertNull($uri->getScheme());
         static::assertNull($uri->getFragment());
     }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToBeCastedToJson()
+    {
+        $uri = new Uri(
+            'http',
+            new UriAuthority(
+                'some_user',
+                'some_pass',
+                'host.com',
+                8787
+            ),
+            '/some_path',
+            'q=1&w=2',
+            'someFragment'
+        );
+        $expectedJson = json_encode([
+            'scheme' => 'http',
+            'authority' => [
+                'user' => 'some_user',
+                'pass' => 'some_pass',
+                'host' => 'host.com',
+                'port' => 8787
+            ],
+            'path' => '/some_path',
+            'query' => 'q=1&w=2',
+            'query_parts' => [
+                'q' => '1',
+                'w' => '2'
+            ],
+            'fragment' => 'someFragment'
+        ]);
+        $actualJson = json_encode($uri);
+
+        static::assertJsonStringEqualsJsonString($expectedJson, $actualJson);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldNotSerializeNullValues()
+    {
+        $uri = new Uri(
+            'mailto',
+            new UriAuthority(),
+            'john.kowalsky'
+        );
+        $expectedJson = json_encode([
+            'scheme' => 'mailto',
+            'path' => 'john.kowalsky'
+        ]);
+        $actualJson = json_encode($uri);
+
+        static::assertJsonStringEqualsJsonString($expectedJson, $actualJson);
+    }
 }

@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace EPS\PhpUri;
 
-final class Uri
+final class Uri implements \JsonSerializable
 {
     /**
      * @var string
@@ -116,5 +116,20 @@ final class Uri
         $this->queryParts = $output;
 
         return http_build_query($output);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        return array_filter([
+            'scheme' => $this->scheme,
+            'authority' => $this->authority->jsonSerialize(),
+            'path' => $this->path,
+            'query' => $this->query,
+            'query_parts' => $this->queryParts,
+            'fragment' => $this->fragment
+        ]);
     }
 }
