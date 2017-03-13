@@ -31,4 +31,12 @@ class ValidatorException extends \LogicException
 
         return new self($message, $code, $previous);
     }
+
+    public static function invalidPath(string $uri, \Throwable $previous = null): self
+    {
+        $message = "Invalid path in $uri";
+        $code = 4;
+
+        return new self($message, $code, $previous);
+    }
 }
