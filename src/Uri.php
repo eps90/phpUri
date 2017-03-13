@@ -50,4 +50,44 @@ final class Uri
         $this->query = $query;
         $this->fragment = $fragment;
     }
+
+    /**
+     * @return string
+     */
+    public function getScheme(): ?string
+    {
+        return $this->scheme;
+    }
+
+    /**
+     * @return UriAuthority
+     */
+    public function getAuthority(): UriAuthority
+    {
+        return $this->authority;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPath(): ?string
+    {
+        return $this->path;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuery(): ?string
+    {
+        return $this->query;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFragment(): ?string
+    {
+        return $this->fragment;
+    }
 }
