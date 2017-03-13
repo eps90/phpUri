@@ -35,7 +35,7 @@ class Rfc3986ValidatorTest extends TestCase
      * @test
      * @dataProvider invalidUriProvider
      */
-    public function itShouldReturnFalseForInvalidUri(string $uriCandidate)
+    public function itShouldThrowForInvalidUri(string $uriCandidate)
     {
         $this->expectException(ValidatorException::class);
 
