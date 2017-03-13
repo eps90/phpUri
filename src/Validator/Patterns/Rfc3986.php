@@ -11,7 +11,7 @@ interface Rfc3986
     public const DIGIT = '0-9';
     public const HEX = self::DIGIT . 'A-Fa-f';
     public const UTF8 = '\\x80-\\xFF';
-    public const PCT_ENCODED = '%' . self::HEX . self::HEX;
+    public const PCT_ENCODED = '%[' . self::HEX . ']{2}';
     public const PCHAR = '[' . self::UNRESERVED . self::DELIMITERS . self::UTF8 . ':@]|' . self::PCT_ENCODED;
     public const OCTET = '(?:[' . self::DIGIT . ']|[1-9][' . self::DIGIT . ']|1[' . self::DIGIT . ']{2}|2[0-4]' . self::DIGIT . '|25[0-5])';
     public const H16 = '[' . self::HEX . ']{1,4}';
