@@ -13,10 +13,7 @@ final class AuthorityValidator implements Validator
      */
     public function validate(string $uriCandidate): bool
     {
-        if (!preg_match(Rfc3986::URI_UNPACK_PATTERN, $uriCandidate, $matches)) {
-            ValidatorException::invalidAuthority($uriCandidate);
-        }
-
+        preg_match(Rfc3986::URI_UNPACK_PATTERN, $uriCandidate, $matches);
         $authorityPart = $matches[4];
 
         if (!empty($authorityPart)) {

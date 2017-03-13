@@ -14,10 +14,7 @@ final class PathValidator implements Validator
      */
     public function validate(string $uriCandidate): bool
     {
-        if (!preg_match(Rfc3986::URI_UNPACK_PATTERN, $uriCandidate, $matches)) {
-            ValidatorException::invalidPath($uriCandidate);
-        }
-
+        preg_match(Rfc3986::URI_UNPACK_PATTERN, $uriCandidate, $matches);
         $path = $matches[5] ?? null;
 
         if (!empty($path)) {

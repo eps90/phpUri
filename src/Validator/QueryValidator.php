@@ -13,10 +13,7 @@ final class QueryValidator implements Validator
      */
     public function validate(string $uriCandidate): bool
     {
-        if (!preg_match(Rfc3986::URI_UNPACK_PATTERN, $uriCandidate, $matches)) {
-            ValidatorException::invalidQuery($uriCandidate);
-        }
-
+        preg_match(Rfc3986::URI_UNPACK_PATTERN, $uriCandidate, $matches);
         $query = $matches[7] ?? null;
 
         if (!empty($query)) {
