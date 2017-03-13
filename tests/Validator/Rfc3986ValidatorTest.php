@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace EPS\PhpUri\Tests\Validator;
 
+use EPS\PhpUri\Exception\ValidatorException;
 use EPS\PhpUri\Validator\Rfc3986Validator;
 use PHPUnit\Framework\TestCase;
 
@@ -36,6 +37,8 @@ class Rfc3986ValidatorTest extends TestCase
      */
     public function itShouldReturnFalseForInvalidUri(string $uriCandidate)
     {
+        $this->expectException(ValidatorException::class);
+
         $actualResult = $this->validator->validate($uriCandidate);
         static::assertFalse($actualResult, $uriCandidate);
     }
