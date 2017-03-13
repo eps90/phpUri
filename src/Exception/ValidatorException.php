@@ -23,4 +23,12 @@ class ValidatorException extends \LogicException
 
         return new self($message, $code, $previous);
     }
+
+    public static function invalidAuthority(string $uri, \Throwable $previous = null): self
+    {
+        $message = "Invalid authority in $uri";
+        $code = 3;
+
+        return new self($message, $code, $previous);
+    }
 }
