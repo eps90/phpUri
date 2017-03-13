@@ -30,10 +30,10 @@ interface Rfc3986
     public const SEGMENT_NZ = '(?>(?:' . self::PCHAR . ')+)';
     public const SEGMENT_NZ_NC = '(?>(?:[' . self::UNRESERVED . self::DELIMITERS . '@]++|' . self::PCT_ENCODED . ')+)';
 
-    public const PATH_ABEMPTY = '(?:\/' . self::SEGMENT . ')*';
-    public const PATH_ABSOLUTE = '(?:\/(' . self::SEGMENT_NZ . '(' . self::SEGMENT . ')*)?)';
-    public const PATH_NOSCHEME = '(?:' . self::SEGMENT_NZ_NC . '(' . self::SEGMENT . ')*)';
-    public const PATH_ROOTLESS = '(?:' . self::SEGMENT_NZ . '(' . self::SEGMENT . ')*)';
+    public const PATH_ABEMPTY = '(?:\/' . self::SEGMENT . ')';
+    public const PATH_ABSOLUTE = '(?:\/(' . self::SEGMENT_NZ . '(\/' . self::SEGMENT . ')*))';
+    public const PATH_NOSCHEME = '(?:' . self::SEGMENT_NZ_NC . '(\/' . self::SEGMENT . ')*)';
+    public const PATH_ROOTLESS = '(?:' . self::SEGMENT_NZ . '(\/' . self::SEGMENT . ')*)';
     public const PATH_EMPTY = '()';
     public const PATH = self::PATH_ABEMPTY . '|' . self::PATH_ABSOLUTE . '|' . self::PATH_ROOTLESS . self::PATH_EMPTY;
 
