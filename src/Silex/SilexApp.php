@@ -4,7 +4,9 @@ declare(strict_types = 1);
 namespace EPS\PhpUri\Silex;
 
 use EPS\PhpUri\Exception\ValidatorException;
+use EPS\PhpUri\Factory\ArrayBasedUriFactory;
 use EPS\PhpUri\Factory\StringBasedUriFactory;
+use EPS\PhpUri\Formatter\UriFormatter;
 use EPS\PhpUri\Parser\PhpBuiltInParser;
 use EPS\PhpUri\Validator\Rfc3986Validator;
 use Silex\Application;
@@ -49,6 +51,21 @@ final class SilexApp extends Application
             } catch (ValidatorException $exception) {
                 return new Response($exception->getMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
             }
+        });
+        $app->post('/uri', function (Request $request) use ($app) {
+            $requestedParts = $request->request->all();
+            if (empty($requestedParts)) {
+                return $app->json('', Response::HTTP_BAD_REQUEST);
+            }
+
+            // @todo inject with Pimple
+            $factory = new ArrayBasedUriFactory();
+            $uri = $factory->createUri($requestedParts);
+
+            $formatter = new UriFormatter();
+            $result = $formatter->format($uri);
+
+            return $app->json($result, Response::HTTP_CREATED);
         });
     }
 }
