@@ -14,7 +14,7 @@ final class PhpBuiltInParser implements Parser
      */
     public function parseUri(string $uri): Uri
     {
-        $parsedUri = parse_url($uri);
+        $parsedUri = parse_url(rawurldecode($uri));
 
         if ($parsedUri === false) {
             throw ParserException::cannotParseUrl($uri);

@@ -74,4 +74,24 @@ class PhpBuiltInParserTest extends TestCase
         $invalidUri = 'http://';
         $this->parser->parseUri($invalidUri);
     }
+
+    /**
+     * @test
+     */
+    public function itShouldEncodeValuesBeforeBuidlingAnObject()
+    {
+        $encodedUri = 'http://example.com/some/path%5B0%5D';
+        $expectedUri = new Uri(
+            'http',
+            new UriAuthority(
+                null,
+                null,
+                'example.com'
+            ),
+            '/some/path[0]'
+        );
+        $actualUri = $this->parser->parseUri($encodedUri);
+
+        static::assertEquals($expectedUri, $actualUri);
+    }
 }
