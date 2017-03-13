@@ -3,15 +3,15 @@ declare(strict_types = 1);
 
 namespace EPS\PhpUri\Tests\Formatter;
 
-use EPS\PhpUri\Formatter\SimpleFormatter;
+use EPS\PhpUri\Formatter\UriFormatter;
 use EPS\PhpUri\Uri;
 use EPS\PhpUri\UriAuthority;
 use PHPUnit\Framework\TestCase;
 
-class SimpleFormatterTest extends TestCase
+class UriFormatterTest extends TestCase
 {
     /**
-     * @var SimpleFormatter
+     * @var UriFormatter
      */
     private $formatter;
 
@@ -19,7 +19,7 @@ class SimpleFormatterTest extends TestCase
     {
         parent::setUp();
 
-        $this->formatter = new SimpleFormatter();
+        $this->formatter = new UriFormatter();
     }
 
     /**

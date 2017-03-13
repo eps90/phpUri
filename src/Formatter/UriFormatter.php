@@ -5,7 +5,7 @@ namespace EPS\PhpUri\Formatter;
 
 use EPS\PhpUri\Uri;
 
-final class SimpleFormatter implements Formatter
+final class UriFormatter implements Formatter
 {
     /**
      * {@inheritdoc}
