@@ -44,6 +44,7 @@ interface Rfc3986
     public const PORT = '(?>[' . self::DIGIT . ']+)';
     public const AUTHORITY = '(?:' . self::USERINFO . '@)?' . self::HOST . '(' . self::PORT . ')?';
     public const QUERY = '(?:(?>(' . self::PCHAR . '|[\?])*))';
+    public const FRAGMENT = '(?:(?>(' . self::PCHAR . '|[\?])*))';
 
     public const UNRESERVED = self::ALPHA . self::DIGIT . '\-\._~';
     public const DELIMITERS = '!$&\'()*+,;=';
