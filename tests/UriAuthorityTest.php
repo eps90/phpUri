@@ -41,4 +41,46 @@ class UriAuthorityTest extends TestCase
         static::assertNull($authority->getPassword());
         static::assertNull($authority->getHost());
     }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToBeCastedToJson()
+    {
+        $uri = new UriAuthority(
+            'some_user',
+            'some_pass',
+            'some.host.com',
+            9876
+        );
+
+        $expectedJson = json_encode([
+            'user' => 'some_user',
+            'pass' => 'some_pass',
+            'host' => 'some.host.com',
+            'port' => 9876
+        ]);
+        $actualJson = json_encode($uri);
+
+        static::assertJsonStringEqualsJsonString($expectedJson, $actualJson);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldNotIncludeNullValuesInOutputJson()
+    {
+        $uri = new UriAuthority(
+            null,
+            null,
+            'some.host.com'
+        );
+
+        $expectedJson = json_encode([
+            'host' => 'some.host.com'
+        ]);
+        $actualJson = json_encode($uri);
+
+        static::assertJsonStringEqualsJsonString($expectedJson, $actualJson);
+    }
 }

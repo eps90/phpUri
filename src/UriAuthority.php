@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace EPS\PhpUri;
 
-final class UriAuthority
+final class UriAuthority implements \JsonSerializable
 {
     /**
      * @var string
@@ -69,5 +69,18 @@ final class UriAuthority
     public function getPort(): ?int
     {
         return $this->port;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        return array_filter([
+            'user' => $this->username,
+            'pass' => $this->password,
+            'host' => $this->host,
+            'port' => $this->port
+        ]);
     }
 }
