@@ -49,13 +49,13 @@ final class SilexApp extends Application
 
                 return $app->json($uri);
             } catch (ValidatorException $exception) {
-                return new Response($exception->getMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
+                return $app->json($exception->getMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
             }
         });
         $app->post('/uri', function (Request $request) use ($app) {
             $requestedParts = $request->request->all();
             if (empty($requestedParts)) {
-                return $app->json('', Response::HTTP_BAD_REQUEST);
+                return new Response('', Response::HTTP_BAD_REQUEST);
             }
 
             // @todo inject with Pimple
