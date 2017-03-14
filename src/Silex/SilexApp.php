@@ -7,7 +7,7 @@ use EPS\PhpUri\Exception\ValidatorException;
 use EPS\PhpUri\Factory\ArrayBasedUriFactory;
 use EPS\PhpUri\Factory\StringBasedUriFactory;
 use EPS\PhpUri\Formatter\UriFormatter;
-use EPS\PhpUri\Parser\PhpBuiltInParser;
+use EPS\PhpUri\Parser\Rfc3986Parser;
 use EPS\PhpUri\Validator\Rfc3986Validator;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,7 +43,7 @@ final class SilexApp extends Application
                 // @todo inject with Pimple
                 $factory = new StringBasedUriFactory(
                     new Rfc3986Validator(),
-                    new PhpBuiltInParser()
+                    new Rfc3986Parser()
                 );
                 $uri = $factory->createUri($requestedUri);
 
