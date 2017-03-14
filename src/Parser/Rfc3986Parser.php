@@ -20,10 +20,7 @@ final class Rfc3986Parser implements Parser
         }
 
         $scheme = $this->encode($matches[2] ?? null);
-        $authority = $this->encode($matches[4] ??  null);
-        $authorityParsed = $this->parseAuthority(
-            $this->encode($authority ?? null)
-        );
+        $authorityParsed = $this->parseAuthority($matches[4] ?? null);
         $path = $this->encode($matches[5] ?? null);
         $query = $this->encode($matches[7] ?? null);
         $fragment = $this->encode($matches[9] ?? null);
@@ -55,9 +52,9 @@ final class Rfc3986Parser implements Parser
         $authorityRegex = '/' . Rfc3986::AUTHORITY . '/';
         preg_match($authorityRegex, $authorityString, $matches);
 
-        $userAndPass = $matches[1] ?? null;
-        $host = $matches[2];
-        $portWithColon = $matches[5] ?? null;
+        $userAndPass = $this->encode($matches[1] ?? null);
+        $host = $this->encode($matches[3]);
+        $portWithColon = $this->encode($matches[7] ?? null);
 
         list($user, $pass) = $this->parseUserAndPass($userAndPass);
         $port = $this->parsePortWithColon($portWithColon);

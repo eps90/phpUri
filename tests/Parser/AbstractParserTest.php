@@ -3,7 +3,6 @@ declare(strict_types = 1);
 
 namespace EPS\PhpUri\Tests\Parser;
 
-use EPS\PhpUri\Exception\ParserException;
 use EPS\PhpUri\Parser\Parser;
 use EPS\PhpUri\Uri;
 use EPS\PhpUri\UriAuthority;
@@ -69,17 +68,18 @@ abstract class AbstractParserTest extends TestCase
     /**
      * @test
      */
-    public function itShouldEncodeValuesBeforeBuidlingAnObject()
+    public function itShouldEncodeValuesBeforeBuildingAnObject()
     {
-        $encodedUri = 'http://example.com/some/path%5B0%5D';
+        $encodedUri = 'http://u%5Bs%5Der:pa%5Bss%5Dword@%5Be%5Dxample.com/some/path%5B0%5D?q%5B0%5D=1&q%5B1%5D=2';
         $expectedUri = new Uri(
             'http',
             new UriAuthority(
-                null,
-                null,
-                'example.com'
+                'u[s]er',
+                'pa[ss]word',
+                '[e]xample.com'
             ),
-            '/some/path[0]'
+            '/some/path[0]',
+            'q[0]=1&q[1]=2'
         );
         $actualUri = $this->parser->parseUri($encodedUri);
 
