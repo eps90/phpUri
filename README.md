@@ -10,12 +10,12 @@ with injected validator and parser implementations and call `createUri` method:
 ```php
 <?php
 use EPS\PhpUri\Factory\StringBasedUriFactory;
-use EPS\PhpUri\Parser\PhpBuiltInParser;
+use EPS\PhpUri\Parser\Rfc3986Parser;
 use EPS\PhpUri\Validator\Rfc3986Validator;
 
 $uriFactory = new StringBasedUriFactory(
     new Rfc3986Validator(),
-    new PhpBuiltInParser()
+    new Rfc3986Parser()
 );
 $uri = $uriFactory->createUri('http://user:pass@example.com/path');
 ```
@@ -81,9 +81,12 @@ $result = $aggregated->validate('http://example.com?query=123');
 
 ### Parsing
 
-Parser implements `Parser` interface and returns an `Uri` object.
-Currently there is only one implementation available: `PhpBuiltInParser`
-which uses the `parse_url` function to fetch uri parts.
+Parsers implement `Parser` interface and returns an `Uri` object.
+Currently there are two implementations available:
+
+* `PhpBuiltInParser` uses the `parse_url` function to fetch uri parts
+* `Rfc3986Parser' - uses a [slightly modified unpack regex](https://tools.ietf.org/html/rfc3986#appendix-B) 
+to fetch URI parts
 
 ### Formatting
 
