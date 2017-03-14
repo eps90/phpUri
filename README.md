@@ -85,7 +85,7 @@ Parsers implement `Parser` interface and returns an `Uri` object.
 Currently there are two implementations available:
 
 * `PhpBuiltInParser` uses the `parse_url` function to fetch uri parts
-* `Rfc3986Parser' - uses a [slightly modified unpack regex](https://tools.ietf.org/html/rfc3986#appendix-B) 
+* `Rfc3986Parser` - uses a [slightly modified unpack regex](https://tools.ietf.org/html/rfc3986#appendix-B) 
 to fetch URI parts
 
 ### Formatting
