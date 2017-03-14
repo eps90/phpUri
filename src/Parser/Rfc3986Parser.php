@@ -60,22 +60,26 @@ final class Rfc3986Parser implements Parser
         $portWithColon = $matches[5] ?? null;
 
         list($user, $pass) = $this->parseUserAndPass($userAndPass);
-
-        if ($portWithColon !== null) {
-            $port = (int)ltrim($portWithColon, ':');
-        } else {
-            $port = null;
-        }
+        $port = $this->parsePortWithColon($portWithColon);
 
         return new UriAuthority($user, $pass, $host, $port);
     }
 
-    private function parseUserAndPass(string $userAndPass = null)
+    private function parseUserAndPass(string $userAndPass = null): array
     {
         $result = array_fill(0, 2, null);
         if ($userAndPass !== null) {
             return array_replace($result, array_filter(explode(':', $userAndPass)));
         }
         return $result;
+    }
+
+    private function parsePortWithColon(string $portWithColon = null): ?int
+    {
+        if ($portWithColon !== null) {
+            return (int)ltrim($portWithColon, ':');
+        }
+
+        return null;
     }
 }
