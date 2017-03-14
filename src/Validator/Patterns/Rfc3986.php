@@ -43,7 +43,7 @@ interface Rfc3986
 
     public const USERINFO = '(?>([' . self::UNRESERVED . self::DELIMITERS . ':]++|' . self::PCT_ENCODED .')*)';
     public const PORT = '(?>[' . self::DIGIT . ']+)';
-    public const AUTHORITY = '(?:' . self::USERINFO . '@)?' . self::HOST . '(' . self::PORT . ')?';
+    public const AUTHORITY = '(?:' . self::USERINFO . '@)?' . self::HOST . '(:' . self::PORT . ')?';
     public const QUERY = '(?:(?>(' . self::PCHAR . '|[\?])*))';
     public const FRAGMENT = '(?:(?>(' . self::PCHAR . '|[\?])*))';
 
