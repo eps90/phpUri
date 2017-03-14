@@ -85,4 +85,24 @@ abstract class AbstractParserTest extends TestCase
 
         static::assertEquals($expectedUri, $actualUri);
     }
+
+    /**
+     * @test
+     */
+    public function itShouldParseAuthorityPartWithoutPassword()
+    {
+        $inputUri = 'http://user@example.com/some/path';
+        $expectedUri = new Uri(
+            'http',
+            new UriAuthority(
+                'user',
+                null,
+                'example.com'
+            ),
+            '/some/path'
+        );
+        $actualUri = $this->parser->parseUri($inputUri);
+
+        static::assertEquals($expectedUri, $actualUri);
+    }
 }
