@@ -38,10 +38,10 @@ interface Rfc3986
     public const PATH_EMPTY = '()';
     public const PATH = self::PATH_ABEMPTY . '|' . self::PATH_ABSOLUTE . '|' . self::PATH_ROOTLESS . self::PATH_EMPTY;
 
-    public const REGNAME = '(?>([' . self::DELIMITERS . self::UNRESERVED . ']++|' . self::PCT_ENCODED .')*)';
+    public const REGNAME = '(([' . self::DELIMITERS . self::UNRESERVED . ']++|' . self::PCT_ENCODED .')*)';
     public const HOST = '(' . self::IPV4 . '|' . self::REGNAME . ')';
 
-    public const USERINFO = '(?>([' . self::UNRESERVED . self::DELIMITERS . ':]++|' . self::PCT_ENCODED .')*)';
+    public const USERINFO = '(([' . self::UNRESERVED . self::DELIMITERS . ':]++|' . self::PCT_ENCODED .')*)';
     public const PORT = '(?>[' . self::DIGIT . ']+)';
     public const AUTHORITY = '(?:' . self::USERINFO . '@)?' . self::HOST . '(:' . self::PORT . ')?';
     public const QUERY = '(?:(?>(' . self::PCHAR . '|[\?])*))';
